@@ -6,8 +6,7 @@ services:
     ports:
         - 6000:5432
     volumes:
-        - ./postgres_dw:/var/lib/postgresql/data
-        - ./pg/postgres/seeds:/docker-entrypoint-initdb.d
+        - /usr/docker/postgresql/elections_2022:/var/lib/postgresql/data
     environment:
         POSTGRES_PASSWORD: postgres
         POSTGRES_USER: postgres
