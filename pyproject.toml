@@ -1,0 +1,19 @@
+[tool.poetry]
+package-mode = false
+name = "tse-data-analysis"
+version = "0.1.0"
+description = "A project to create ETL based on elections of 2022 in Brazil"
+authors = ["matheusinit"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10.12"
+psycopg2 = "^2.9.9"
+SQLAlchemy = "^2.0.31"
+pandas = "^2.2.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
