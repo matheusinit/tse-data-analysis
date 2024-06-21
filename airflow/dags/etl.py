@@ -16,16 +16,14 @@ with DAG(
 ) as dag_1:
     ingestion = PapermillOperator(
         task_id="ingestion",
-        input_nb="../../pipelines/00_ingestion.ipynb",
-        output_nb="out/00_ingestion_out_{{ execution_date }}.ipynb",
-        parameters={"execution_date": "{{ execution_date }}"},
+        input_nb="/opt/airflow/pipelines/00_ingestion.ipynb",
+        output_nb="/opt/airflow/pipelines/out/00_ingestion_out_{{ execution_date }}.ipynb"
     )
 
     cleansing = PapermillOperator(
-        task_id="ingestion",
-        input_nb="../../pipelines/01_cleansing.ipynb",
-        output_nb="out/01_cleansing_out_{{ execution_date }}.ipynb",
-        parameters={"execution_date": "{{ execution_date }}"},
+        task_id="cleansing",
+        input_nb="/opt/airflow/pipelines/01_cleansing.ipynb",
+        output_nb="/opt/airflow/pipelines/out/01_cleansing_out_{{ execution_date }}.ipynb"
     )
 
     ingestion >> cleansing
