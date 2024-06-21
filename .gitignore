@@ -1,4 +1,5 @@
 **/work/*
 .venv
-airflow
+airflow/logs
+airflow/plugins
 .env

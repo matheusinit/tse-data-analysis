@@ -10,8 +10,10 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = ">=3.10.12,<3.13"
 psycopg2 = "^2.9.9"
-SQLAlchemy = "^2.0.31"
+SQLAlchemy = ">=1.4.36,<2.0"
 pandas = "^2.2.2"
+apache-airflow = "^2.9.2"
+apache-airflow-providers-papermill = "^3.7.1"
 
 
 [tool.poetry.group.dev.dependencies]
