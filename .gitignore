@@ -3,4 +3,5 @@
 airflow/logs
 airflow/plugins
 .env
+pipelines/out/*
 **/__pycache__/*
