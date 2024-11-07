@@ -1,0 +1,43 @@
+name: Build and Deploy to GKE
+
+on:
+  push:
+    branches:
+      - master
+
+env:
+  PROJECT_ID: ${{ secrets.GKE_PROJECT }}
+  GKE_CLUSTER: devops-cluster
+  GKE_ZONE: us-central1
+  IMAGE: matheusinit/airflow:latest
+
+jobs:
+  setup-build-publish-deploy:
+    name: Setup, Build, Publish, and Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+     # Get the GKE credentials so we can deploy to the cluster
+    - uses: google-github-actions/auth@v2
+      with:
+        credentials_json: ${{ secrets.CREDENTIALS_JSON }}
+
+    # Setup gcloud CLI
+    - uses: google-github-actions/setup-gcloud@v2
+
+    - name: Install gke-gcloud-auth-plugin
+      run: gcloud components install kubectl
+
+    # Deploy the Docker image to the GKE cluster
+    - name: Deploy
+      run: |-
+        gcloud container clusters get-credentials $GKE_CLUSTER --region $GKE_ZONE
+        gcloud config set project $PROJECT_ID
+        kubectl apply -f k8s/deployment.yml
+        kubectl apply -f k8s/service.yml
+
+        kubectl rollout restart deployment
+        kubectl rollout status deployment
