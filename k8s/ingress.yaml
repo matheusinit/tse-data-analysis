@@ -4,7 +4,7 @@ metadata:
   name: tse-analisys-ingress
 spec:
   rules:
-  - host:  
+  - host: tre.imd.ufrn.br
       path:
       pathType: Prefix
       beckend:
