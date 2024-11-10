@@ -5,7 +5,9 @@ metadata:
 spec:
   rules:
   - host: tre.imd.ufrn.br
-      path:
+      http:
+      paths:
+      - path: /
       pathType: Prefix
       beckend:
         service:
