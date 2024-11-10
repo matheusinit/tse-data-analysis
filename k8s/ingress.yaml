@@ -1,0 +1,14 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tse-analisys-ingress
+spec:
+  rules:
+  - host:  
+      path:
+      pathType: Prefix
+      beckend:
+        service:
+          name: tse-analisys-service
+          port:
+            number: 80
