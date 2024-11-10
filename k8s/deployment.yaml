@@ -16,6 +16,12 @@ spec:
   containers:
   - name: airflow
     image: matheusinit/airflow:latest
+    readinessProbe:
+      httpGet:
+        path: /
+        port: 8080
+      initialDelaySeconds: 10
+      periodSeconds: 5
     imagePullPolicy: Always
     ports:
     - containerPort: 8080
