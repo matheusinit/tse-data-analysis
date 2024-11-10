@@ -22,6 +22,13 @@ spec:
         port: 8080
       initialDelaySeconds: 10
       periodSeconds: 5
+    livenessProbe:
+      httpGet:
+        path: /
+        port: 8080
+      initialDelaySecond: 10
+      periodSeconds: 5
+      failureThereshold: 2
     imagePullPolicy: Always
     ports:
     - containerPort: 8080
