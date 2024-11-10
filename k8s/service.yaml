@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tse-analisys-service
+spec: 
+  type: ClusteIP
+  selector:
+    app: tse-analisys
+  ports:
+  - port: 80
+    targetPort: 8080
