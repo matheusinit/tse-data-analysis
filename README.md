@@ -5,6 +5,8 @@
 
 **TSE Data Analysis** é um projeto de engenharia de dados que aplica conceitos de ETL e Orquestração construindo uma solução baseado em um dataset dos [Dados abertos do TSE](https://dadosabertos.tse.jus.br/dataset/resultados-2022) para Business Intelligence e Analytics.
 
+Integrantes: Elder, Flávio, Matheus
+
 <div align="center">
   <img width="1000" src="./.github/readme/etl-arch.svg" />
 </div>
@@ -19,3 +21,5 @@ Utilizando o Apache Airflow para a orquestração de tasks e DAGs, foi construí
   + Docker
   + Jupyter Notebook
   + Poetry
+  + Kubernetes
+  + Google Cloud Platform
