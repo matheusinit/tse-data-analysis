@@ -1,41 +1,43 @@
 apiVersion: v1
 kind: Deployment
 metadata:
-  name: airflow
+  name: airflow-deployment
+  labels:
+    app: tse-analysis
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: tse-analysis
   template:
-metadata:
-  name: airflow
-  labels:
-    app: tse-analysis
-spec:
-  containers:
-  - name: airflow
-    image: matheusinit/airflow:latest
-    readinessProbe:
-      httpGet:
-        path: /
-        port: 8080
-      initialDelaySeconds: 10
-      periodSeconds: 5
-    livenessProbe:
-      httpGet:
-        path: /
-        port: 8080
-      initialDelaySecond: 10
-      periodSeconds: 5
-      failureThereshold: 2
-    imagePullPolicy: Always
-    ports:
-    - containerPort: 8080
-    resources:
-      requests:
-        memory: "32Mi"
-        cpu: "250m"
-      limits:
-        memory: "64Mi"
-        cpu: "500m"
+    metadata:
+      name: airflow
+      labels:
+        app: tse-analysis
+    spec:
+      containers:
+      - name: airflow
+        image: matheusinit/airflow:latest
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 5
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySecond: 10
+          periodSeconds: 5
+          failureThereshold: 2
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            memory: "32Mi"
+            cpu: "250m"
+          limits:
+            memory: "64Mi"
+            cpu: "500m"
