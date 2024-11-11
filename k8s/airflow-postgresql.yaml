@@ -3,7 +3,7 @@ kind: StatefulSet
 metadata:
   name: airflow-postgresql
 spec:
-  serviceName: 'postgresql'
+  serviceName: "postgresql"
   replicas: 1
   selector:
     matchLabels:
@@ -23,31 +23,15 @@ spec:
               value: "airflow_password"
             - name: POSTGRES_DB
               value: "airflow"
-          ports:
-            - containerPort: 5432
           volumeMounts:
-            - name: airflow-postgresql-pvc
-              mountPath: /var/lib/postgresql-airflow/data
-      volumes:
-        - metadata:
-          name: postgresql-data
-          spec:
-            accessModes:
-              - ReadWriteOnce
-            resources:
-              requests:
-                storage: 10Gi
-        # - name: airflow-postgresql-pvc
-        #   persistentVolumeClaim:
-        #     claimName: airflow-postgresql-pvc
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: airflow-postgresql-pvc
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 5Gi
+            - name: postgresql-data
+              mountPath: /var/lib/airflow-postgresql/data
+  volumeClaimTemplates:
+    - metadata:
+        name: postgresql-data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 10Gi
