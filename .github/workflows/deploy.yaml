@@ -1,9 +1,11 @@
-name: Build and Deploy to GKE
+name: Deploy to GKE
 
 on:
-  push:
-    branches:
-      - master
+  workflow_run:
+    workflows: ["Build and Push Docker Image"]
+    branches: [main]
+    types:
+      - completed
 
 env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
@@ -12,7 +14,8 @@ env:
   IMAGE: matheusinit/airflow:latest
 
 jobs:
-  setup-build-publish-deploy:
+  deploy:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     name: Setup, Build, Publish, and Deploy
     runs-on: ubuntu-latest
 
