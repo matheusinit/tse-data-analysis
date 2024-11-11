@@ -10,7 +10,7 @@ spec:
       paths:
       - path: /
       pathType: Prefix
-      beckend:
+      backend:
         service:
           name: tse-analisys-service
           port:
