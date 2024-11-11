@@ -16,7 +16,7 @@ env:
 jobs:
   deploy:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
-    name: Setup, Build, Publish, and Deploy
+    name: Prepare GCP and Deploy
     runs-on: ubuntu-latest
 
     steps:
