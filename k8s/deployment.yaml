@@ -1,4 +1,4 @@
-apiVersion: v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: airflow-deployment
@@ -28,9 +28,9 @@ spec:
           httpGet:
             path: /
             port: 8080
-          initialDelaySecond: 10
+          initialDelaySeconds: 10
           periodSeconds: 5
-          failureThereshold: 2
+          failureThreshold: 2
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
