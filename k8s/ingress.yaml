@@ -3,9 +3,10 @@ kind: Ingress
 metadata:
   name: tse-analisys-ingress
 spec:
+  ingressClassName: 'gce'
   rules:
   - host: tre.imd.ufrn.br
-      http:
+    http:
       paths:
       - path: /
       pathType: Prefix
