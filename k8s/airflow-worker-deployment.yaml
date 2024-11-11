@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: airflow-worker
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: airflow
+      component: worker
+  template:
+    metadata:
+      labels:
+        app: airflow
+        component: worker
+    spec:
+      containers:
+        - name: worker
+          image: matheusinit/airflow:latest
+          command:
+            - "bash"
+            - "-c"
+            - "airflow worker"
+          env:
+            - name: AIRFLOW__CORE__SQL_ALCHEMY_CONN
+              value: "postgresql+psycopg2://airflow_user:airflow_password@airflow-postgresql:5432/airflow"
+          resources:
+            requests:
+              memory: "1G"
+              cpu: "500m"
+            limits:
+              memory: "1G"
+              cpu: "500m"

@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: tse-analisys-service
 spec: 
-  type: ClusterIP
+  type: LoadBalancer
   selector:
     app: tse-analisys
   ports:

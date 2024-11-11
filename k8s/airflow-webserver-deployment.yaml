@@ -2,22 +2,25 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: airflow-deployment
-  labels:
-    app: tse-analysis
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: tse-analysis
+      app: airflow
+      component: webserver
   template:
     metadata:
       name: airflow
       labels:
-        app: tse-analysis
+        app: airflow
+        component: webserver
     spec:
       containers:
       - name: airflow
         image: matheusinit/airflow:latest
+        env:
+          - name: AIRFLOW__CORE__SQL_ALCHEMY_CONN
+            value: "postgresql+psycopg2://airflow_user:airflow_password@airflow-postgresql:5432/airflow"
         readinessProbe:
           httpGet:
             path: /
