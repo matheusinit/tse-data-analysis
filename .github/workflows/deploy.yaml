@@ -39,9 +39,9 @@ jobs:
       run: |-
         gcloud container clusters get-credentials $GKE_CLUSTER --region $GKE_ZONE
         gcloud config set project $PROJECT_ID
-        kubectl apply -f k8s/deployment.yaml
-        kubectl apply -f k8s/service.yaml
+        kubectl apply -f k8s/airflow-postgresql.yaml
+        kubectl apply -f k8s/airflow-scheduler-deployment.yaml
+        kubectl apply -f k8s/airflow-webserver-deployment.yaml
+        kubectl apply -f k8s/airflow-worker-deployment.yaml
+        kubectl apply -f k8s/airflow-webserver-service.yaml
         kubectl apply -f k8s/ingress.yaml
-
-        kubectl rollout restart deployment
-        kubectl rollout status deployment
