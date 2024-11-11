@@ -8,10 +8,10 @@ spec:
   - host: tre.imd.ufrn.br
     http:
       paths:
-      - path: /
-      pathType: Prefix
-      backend:
-        service:
-          name: tse-analisys-service
-          port:
-            number: 80
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: tse-analisys-service
+              port:
+                number: 80
